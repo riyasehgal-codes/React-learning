@@ -6,11 +6,11 @@ import './App.css'
 import Chai from './Chai.jsx'
 
 function App() {
-  // const [count, setCount] = useState(0)
-
+  const username = "taylor swift"
   return (
     <>
-    <Chai/>
+    <h3> {username} </h3>
+    <Chai />
     
     </>
   )

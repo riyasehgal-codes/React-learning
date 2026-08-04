@@ -1,0 +1,2 @@
+for web -> react DOM
+for mobile apss -> react native 

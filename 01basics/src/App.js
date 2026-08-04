@@ -1,13 +1,12 @@
 
 import './App.css';
+import Chai from './chai';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1> Riya Sehgal</h1>
-      </header>
-    </div>
+    <>
+    <Chai/>
+    </>
   );
 }
 

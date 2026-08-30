@@ -1,5 +1,5 @@
 import conf from '../conf/conf.js'
-import { Client, Account, ID, Databases, Storage, Query } from 'appwrite'
+import { Client, ID, Databases, Storage, Query } from 'appwrite'
 
 export class Service {
     client = new Client(); 
@@ -14,14 +14,14 @@ export class Service {
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}) {
+    async createPost({Title, slug, content, featuredImage, status, userId}) {
         try {
             return await this.databases.createDocument(
                 conf.APPWRITE_DATABASE_ID,
                 conf.APPWRITE_COLLECTION_ID,
                 slug, // Use slug as the document ID
                 {
-                    title,
+                    Title,
                     content,
                     featuredImage,
                     status,
@@ -34,14 +34,14 @@ export class Service {
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, status, userId}) {
+    async updatePost(slug, {Title, content, featuredImage, status}) {
         try {
             return await this.databases.updateDocument(
                 conf.APPWRITE_DATABASE_ID,
                 conf.APPWRITE_COLLECTION_ID,
                 slug,
                 {
-                    title,
+                    Title,
                     content,
                     featuredImage,
                     status,

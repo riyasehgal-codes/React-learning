@@ -1,17 +1,15 @@
-import React, {useState} from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { login as authLogin } from "../store/authSlice";
-import Button from "./Button";
-import Input from "./Input";
-import Logo from "./Logo";
-import { useDispatch } from "react-redux";
-import authService from "../appwrite/auth";
-import {useForm} from "react-hook-form" 
+import React, {useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import { login as authLogin } from '../store/authSlice'
+import {Button, Input, Logo} from "./index"
+import {useDispatch} from "react-redux"
+import authService from "../appwrite/auth"
+import {useForm} from "react-hook-form"
 
-function Login() { 
+function Login() {
     const navigate = useNavigate()
-    const dispatch = useDispatch() 
-    const {register, handeSubmit} = useForm() 
+    const dispatch = useDispatch()
+    const {register, handleSubmit} = useForm()
     const [error, setError] = useState("")
 
     const login = async(data) => {
@@ -19,8 +17,8 @@ function Login() {
         try {
             const session = await authService.login(data)
             if (session) {
-                const userData = await authService.getCurrentUser() 
-                if (userData) dispatch(authLogin(userData))
+                const userData = await authService.getCurrentUser()
+                if(userData) dispatch(authLogin(userData));
                 navigate("/")
             }
         } catch (error) {
@@ -28,13 +26,13 @@ function Login() {
         }
     }
 
-    return (
+  return (
     <div
     className='flex items-center justify-center w-full'
     >
         <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
-                    <span className="inline-block w-full max-w-25">
+                    <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
                     </span>
         </div>
@@ -49,7 +47,6 @@ function Login() {
                     </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-
         <form onSubmit={handleSubmit(login)} className='mt-8'>
             <div className='space-y-5'>
                 <Input
@@ -78,10 +75,9 @@ function Login() {
                 >Sign in</Button>
             </div>
         </form>
-
         </div>
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Login
